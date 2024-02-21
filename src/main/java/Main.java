@@ -28,34 +28,34 @@ public class Main {
 
        //task1
 
-       /* // Определение схемы столбцов CSV файла
+        // Определение схемы столбцов CSV файла
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
         // Путь к CSV файлу
         String fileName = "data.csv";
 
         // Парсинг CSV и получение списка сотрудников
-        List<Employee> list = parseCSV(columnMapping, fileName);
+       List<Employee> list = parseCSV(columnMapping, fileName);
         // Преобразование списка сотрудников в JSON
         String json = listToJson(list);
 
         // Запись JSON в файл
         try {
-            writeString(json, "data.json");
+            writeString(json, "data3.json");
         } catch (IOException e) {
             e.printStackTrace();
-        } */
+        }
 
        //task2
 
-        String fileName = "data.xml";
+       /* String fileName = "data.xml";
         List<Employee> list = parseXML(fileName);
         String json = listToJson(list); // метод уже реализован
         writeString(json, "data2.json"); // метод уже реализован
-
+*/
     }
 
     // Метод для парсинга CSV файла
-    private static List<Employee> parseCSV(String[] columnMapping, String fileName) {
+    static List<Employee> parseCSV(String[] columnMapping, String fileName) {
         try (CSVReader csvReader = new CSVReader(new FileReader(fileName))) { // Автоматическое закрытие ресурса CSVReader
             ColumnPositionMappingStrategy<Employee> strategy = new ColumnPositionMappingStrategy<>();
             strategy.setType(Employee.class); // Установка типа класса для маппинга
@@ -73,7 +73,7 @@ public class Main {
     }
 
     // Метод для преобразования списка сотрудников в JSON
-    private static String listToJson(List<Employee> list) {
+    static String listToJson(List<Employee> list) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create(); // Создание экземпляра Gson
         Type listType = new TypeToken<List<Employee>>() {}.getType(); // Определение типа списка
@@ -81,14 +81,14 @@ public class Main {
     }
 
     // Метод для записи строки в файл
-    private static void writeString(String json, String fileName) throws IOException {
+    static void writeString(String json, String fileName) throws IOException {
         FileWriter fileWriter = new FileWriter(fileName); // Создание FileWriter
         fileWriter.write(json); // Запись JSON в файл
         fileWriter.close(); // Закрытие файла
     }
 
     //task2 Метод для чтения и анализа XML файла
-    public static List<Employee> parseXML(String fileName) {
+   /* public static List<Employee> parseXML(String fileName) {
         List<Employee> employees = new ArrayList<>();
         try {
             // Создаем фабрику построителей документов
@@ -121,7 +121,7 @@ public class Main {
             e.printStackTrace();
         }
         return employees;
-    }
+    }*/
 
 
 }
